@@ -1,0 +1,39 @@
+Lecture 5 : Hooks 
+Why there is a need of hooks ? 
+Because if we want to write our logic we can do it by using simple JS
+but if we want to change UI then it will be control by react 
+It gives its own functionality known as Hooks 
+For different function implementations we have different hooks for UI updation .
+
+// useState will return 2 value : value which has to be updated and function which will update that value
+  let [value , setValue] = useState(0);
+
+  const addValue = ()=>{
+    // UI updation with help of hooks : useState 
+    value = value + 1 ;
+    setValue(value);
+    // value = value + 1 ;
+    console.log("Value added: " , value);
+    
+  }
+  const deletedValue = ()=>{
+    // UI updation with help of hooks : useState 
+    value = value - 1 ;
+    setValue(value);
+    // value = value + 1 ;
+    console.log("Value deleted: " , value);
+    
+  }
+
+  return (
+    <>
+      <h1>Hello! this is a counter button and value is = {value}</h1>
+      <br />
+      <button onClick={addValue}>Counter Up{value}</button>
+      <br />
+      <button onClick={deletedValue}>Counter Down{value}</button>
+    </>
+  )
+
+
+  
