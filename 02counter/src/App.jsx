@@ -12,8 +12,21 @@ function App() {
     
     // Assignment : value must be between 0 and 20 
     if(value >= 0 && value < 20 ){
-      value = value + 1 ;
-      setValue(value);
+      // setValue(value+1);
+                                                          // Interview Question 
+      // setValue(value+1);
+      // setValue(value+1);
+      // setValue(value+1);
+      // setValue(value+1);
+      // What will be the output ? 
+      // Ans : Working as same because in react it is wrapped into a bundle of same thing and then rendered due to fibre algorithm
+      // setValue gives one call back function in which we fetch previous Value
+      setValue((preValue)=>preValue + 1);
+      setValue((preValue)=>preValue + 1);
+      setValue((preValue)=>preValue + 1);
+      setValue((preValue)=>preValue + 1);
+
+      // Now answer will increment to 4 
     }
     
     // value = value + 1 ;
@@ -23,8 +36,8 @@ function App() {
   const deletedValue = ()=>{
     // UI updation with help of hooks : useState 
     if(value > 0 && value <= 20 ){
-      value = value - 1 ;
-      setValue(value);
+
+      setValue(value-1);
     }
     // value = value - 1 ;
     console.log("Value deleted: " , value);
