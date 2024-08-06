@@ -1,0 +1,5 @@
+How to start this project first see the functionality of the project
+Like in this project we are changing many things in UI so we need state.
+for example ,
+1. length 2. inclusion of numbers 3. inclusion of characters 4. password changing whenever we are refreshing it.
+
