@@ -7,15 +7,17 @@ function App() {
   const [specialChars, setSpecialChars] = useState(false);
   const [password , setPassword] = useState("");
 
-  // Ref hook : 
+  // Ref hook : Whenever we want refrence of something then we use useRef hook
   const passwordRef = useRef(null)  // we used this to give good UX
 
   // React me useCallback hook ko tab use kiya jata hai jab aapko ek function ko memoize karna hota hai, taki unnecessary re-renders ko roka ja sake. Yeh tab kaam aata hai jab aap ek function ko pass kar rahe hote hain as a prop to child components aur aap nahi chahte ki woh function har render par recreate ho.
 
+
 //   const memoizedCallback = useCallback(() => {
 //   // your logic here
 // }, [dependencies]);
-  
+// const passwordGenerator = ()=>{}
+// But optimized approach is this :   
 const passwordGenerator = useCallback(()=>{
   let pass = "";
   let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -26,7 +28,7 @@ const passwordGenerator = useCallback(()=>{
   for(let i = 1 ; i<=length ; i++){
     let char = Math.floor(Math.random() * str.length + 1);
     pass += str[char];
-  }
+  } 
 
   setPassword(pass);
   
@@ -34,15 +36,19 @@ const passwordGenerator = useCallback(()=>{
 
 // Copy Button using ref Hook : 
 const copyToClipboard = useCallback(()=>{
-  passwordRef.current?.select();
+  passwordRef.current?.select(); // This is for good UI we are using hook because we are changing UI in react
   // passwordRef.current?.setSelectionRange(0,20);
-  window.navigator.clipboard.writeText(password)
+  window.navigator.clipboard.writeText(password)    // This will copy to clipboard
 }, [password])
 
-// setPassword is used only for memoization : Sotred in cache 
+// setPassword is used only for memorization : Stored in cache 
 // We can also remove it
 
 // useEffect hook is used to run side effects after render, it is a good place to put API calls, subscriptions, or other side effects that affect the component's render output.
+
+// If there is any change in dependecies value then please call passwordGenerator() 
+// This is the optimized way of calling passwordGenerator
+// Run with help of useEffect .
 useEffect(()=>{
   passwordGenerator();
 }, [length , specialChars , numberAllowed , passwordGenerator]);
